@@ -3,7 +3,9 @@ use school;
 db.students.find().forEach(function(student) {
 	var s = Array();
 	for ( var i = 0; i < student.scores.length; i++) {
-		s.push(student.scores[i].score);
+		if (student.scores[i].type == 'homework'){
+			s.push(student.scores[i].score);
+		}
 	}
 	s_min = Math.min.apply(Math, s);
 	db.students.update({
